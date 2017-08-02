@@ -66,6 +66,7 @@ var place = function(data){
     this.id= ko.observable(data.id);
     this.type = ko.observable(data.type); 
     this.input = ko.observable("");
+    this marker =ko.observableArray([data.marker]); 
     this.inputfilter = ko.observableArray([]);   
     }; 
 
@@ -80,8 +81,8 @@ var ViewModel = function(){
 
     self.input = ko.observable("");
 
-   	self.markerbounce = function(marker) {
-	   animate(marker);  
+   	self.markerbounce = function(this.marker) {
+	   animate(this.marker);  
 };
 
 }; 
