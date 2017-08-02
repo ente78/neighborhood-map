@@ -27,10 +27,10 @@
 
                 </div>
                 <div id="sidebar-wrapper" class="sidebar-toggle">
-                    <input data-bind="value: search" id="myinput" type="text" placeholder="search">
+                    <input data-bind="" id="myinput" type="text" placeholder="search">
                     <ul class="sidebar-nav" id="myul" data-bind="foreach: myplaces">
                         <li>
-                            <a data-bind="text: name, "></a>
+                            <a data-bind="text: name, click:$parent.markerbounce"></a>
                         </li>
                     </ul>
                 </div>

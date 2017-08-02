@@ -79,8 +79,13 @@ var ViewModel = function(){
         });
 
     this.input = ko.observable("");
-   
 
+   	this.markerbounce = function(marker) {
+	   animate(marker);  
+};
+
+}; 
+/*
     this.search = ko.computed(function(){
 	    var filter = self.input().toLowerCase();
    		 return ko.utils.arrayFilter(places, function(marker) {
@@ -90,8 +95,10 @@ var ViewModel = function(){
          		 return marker.setVisible(false);
     	  }
    		 });
-	}, self);
-};
+	}, this);
+*/ 
+
+
 
 /*
 

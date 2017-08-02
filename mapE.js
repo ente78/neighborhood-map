@@ -89,8 +89,17 @@ function initMap() {
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
           });
-        }
-      }
+    }; 
+  }
+
+     function animate(marker) {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+
+
+
+
+
 
 
 
