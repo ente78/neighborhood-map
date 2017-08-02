@@ -72,15 +72,15 @@ var place = function(data){
 
 var ViewModel = function(){
     var self = this;
-    this.myplaces = ko.observableArray([]);
+    self.myplaces = ko.observableArray([]);
 
     places.forEach(function(placeitem){
 		self.myplaces.push(new place(placeitem));
         });
 
-    this.input = ko.observable("");
+    self.input = ko.observable("");
 
-   	this.markerbounce = function(marker) {
+   	self.markerbounce = function(marker) {
 	   animate(marker);  
 };
 
