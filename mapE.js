@@ -44,15 +44,12 @@ function initMap() {
            });
 
           marker.addListener('click', function(){
-            toggleBounce(this,)
+            toggleBounce(this); 
           }); 
       
-          function toggleBounce() {
-                if (marker.getAnimation() !== null) {
-                    marker.setAnimation(null);
-             }   else {
-                    marker.setAnimation(google.maps.Animation.BOUNCE);
-        }
+          function toggleBounce(marker) {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+              setTimeout(function(){ marker.setAnimation(null); }, 750);
       }
 
 

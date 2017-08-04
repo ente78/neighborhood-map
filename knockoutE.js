@@ -81,13 +81,19 @@ var ViewModel = function(){
     });
     
     self.currentplace= ko.observable(self.myplaces()[0]); 
+	
+	self.markerbounce = function(marker) {  	
+	 	this.toggleBounce(marker);  
+	};
+
+
+	self.markerbounce = function(marker) {  	
+        this.marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function(){ marker.setAnimation(null); }, 750);	 	
+    }; 
+
 
 }; 
-
-	this.markerbounce = function() {  	
- 	 self.animate(marker);  
-};
-
    // self.input = ko.observable("");
 
    
