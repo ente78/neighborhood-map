@@ -65,9 +65,9 @@ var place = function(data){
     this.name = ko.observable(data.name);
     this.id= ko.observable(data.id);
     this.type = ko.observable(data.type); 
-    this.input = ko.observable("");
-    this marker =ko.observableArray([data.marker]); 
-    this.inputfilter = ko.observableArray([]);   
+    //this.input = ko.observable("");
+    //this marker =ko.observableArray([data.marker]); 
+    //this.inputfilter = ko.observableArray([]);   
     }; 
 
 
@@ -75,17 +75,22 @@ var ViewModel = function(){
     var self = this;
     self.myplaces = ko.observableArray([]);
 
+
     places.forEach(function(placeitem){
 		self.myplaces.push(new place(placeitem));
-        });
-
-    self.input = ko.observable("");
-
-   	self.markerbounce = function(this.marker) {
-	   animate(this.marker);  
-};
+    });
+    
+    self.currentplace= ko.observable(self.myplaces()[0]); 
 
 }; 
+
+	this.markerbounce = function() {  	
+ 	 self.animate(marker);  
+};
+
+   // self.input = ko.observable("");
+
+   
 /*
     this.search = ko.computed(function(){
 	    var filter = self.input().toLowerCase();
@@ -109,9 +114,6 @@ If you wish to just to hide/show the marker you could use the setVisible method 
  start_marker.setVisible(true);//to show
 
  */
-
-
-
 
 ko.applyBindings(new ViewModel()); 
 
