@@ -2,7 +2,7 @@
 // array with all 5 required places
 
 var places = [{
-        id: 'ChIJKyKVyeGOsUcRLG5WX_0h-84',
+        id: "id0",
         name: 'here i work',
         location: {
             lat: 53.554072,
@@ -13,7 +13,7 @@ var places = [{
      
     },
     {
-        id: ' ChIJnZksd-GOsUcRXy8G81NGKoY',
+        id: "id1",
         name: 'nike',
         location: {
             lat: 53.552850,
@@ -24,7 +24,7 @@ var places = [{
    
     },
     {
-        id: 'ChIJsZdNCeKOsUcReeo-KaQ5ed8',
+        id: "id2",
         name: 'perle',
         location: {
             lat: 53.551670,
@@ -35,7 +35,7 @@ var places = [{
              
     },
     {
-        id: 'ChIJKyKVyeGOsUcRLG5WX_0h-84',
+        id: "id3",
         name: 'jack jones ',
         location: {
             lat: 53.552315,
@@ -47,7 +47,7 @@ var places = [{
 
         },
     {
-        id: ' ChIJU7knXByPsUcR-Na5tai2l8g',
+        id: "id4",
         name: 'douglas',
         location: {
             lat: 53.552251,
@@ -82,15 +82,16 @@ var ViewModel = function(){
     
     self.currentplace= ko.observable(self.myplaces()[0]); 
 	
-	self.markerbounce = function(marker) {  	
-	 	this.toggleBounce(marker);  
+	self.markerbounce = function(id) {  
+		console.log("print" + (place.name)); 	
+	 	toggleBounce(id.marker);  
 	};
 
 
-	self.markerbounce = function(marker) {  	
-        this.marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ marker.setAnimation(null); }, 750);	 	
-    }; 
+	//self.markerbounce = function(marker) {  	
+      //  this.marker.setAnimation(google.maps.Animation.BOUNCE);
+       // setTimeout(function(){ marker.setAnimation(null); }, 750);	 	
+    //}; 
 
 
 }; 

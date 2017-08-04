@@ -26,6 +26,7 @@ function initMap() {
           var position = places[i].location;
 
           var title = places[i].name;
+          var id = places[i].id; 
 
           // Create a marker per location, and put into markers array.
           var marker = new google.maps.Marker({
@@ -34,7 +35,7 @@ function initMap() {
             title: title,
             icon: defaultIcon, 
             animation: google.maps.Animation.DROP,
-            id: i
+            id: id
           });
           // Push the marker to our array of markers.
           markers.push(marker);
