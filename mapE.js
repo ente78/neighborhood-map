@@ -40,8 +40,20 @@ function initMap() {
           markers.push(marker);
           // Create an onclick event to open an infowindow at each marker.
           marker.addListener('click', function() {
-            populateInfoWindow(this, largeInfowindow);
-          });
+            populateInfoWindow(this, largeInfowindow); 
+           });
+
+          marker.addListener('click', function(){
+            toggleBounce(this, marker)
+          }); 
+      
+          function toggleBounce() {
+                if (marker.getAnimation() !== null) {
+                    marker.setAnimation(null);
+             }   else {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
 
 
         // Two event listeners - one for mouseover, one for mouseout,
