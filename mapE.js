@@ -44,7 +44,7 @@ function initMap() {
            });
 
           marker.addListener('click', function(){
-            toggleBounce(this, marker)
+            toggleBounce(this,)
           }); 
       
           function toggleBounce() {
