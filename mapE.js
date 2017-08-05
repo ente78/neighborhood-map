@@ -27,6 +27,9 @@ function initMap() {
 
           var title = places[i].name;
           var id = places[i].id; 
+          console.log(title);
+          console.log(id);
+          console.log(position); 
 
           // Create a marker per location, and put into markers array.
           var marker = new google.maps.Marker({
@@ -93,26 +96,17 @@ function initMap() {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          infowindow.setContent('<div>' + marker.title + '</div>');
+          infowindow.setContent('<div>' + marker.title+ "  " + marker.id +'</div>');
           infowindow.open(map, marker);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
+
           });
     }; 
   }
 
-     function animate(marker) {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-
-
-
-
-
-
-
-
+  
 
 
 

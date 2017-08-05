@@ -2,59 +2,53 @@
 // array with all 5 required places
 
 var places = [{
-        id: "id0",
+        id: 0,
         name: 'here i work',
         location: {
             lat: 53.554072,
             lng: 10.003331,
         },
-        type: 'work',
-   
+        type: 'work',  
      
     },
     {
-        id: "id1",
+        id: 1,
         name: 'nike',
         location: {
             lat: 53.552850,
             lng: 10.004842,
         },
-        type: 'shopping',
-       
+        type: 'shopping',      
    
     },
     {
-        id: "id2",
+        id: 2,
         name: 'perle',
         location: {
             lat: 53.551670,
             lng: 9.999791, 
         },
-        type: 'food',
-        
+        type: 'food',       
              
     },
     {
-        id: "id3",
+        id: 3,
         name: 'jack jones ',
         location: {
             lat: 53.552315,
             lng: 10.003437,
         },
-        type: 'clothes',
-       
- 
+        type: 'clothes',   
 
         },
     {
-        id: "id4",
+        id: 4,
         name: 'douglas',
         location: {
             lat: 53.552251,
             lng: 10.003797, 
         },
-        type: 'shopping',
-      
+        type: 'shopping',     
 
     },
 
@@ -83,15 +77,8 @@ var ViewModel = function(){
     self.currentplace= ko.observable(self.myplaces()[0]); 
 	
 	self.markerbounce = function(id) {  
-		console.log("print" + (place.name)); 	
-	 	toggleBounce(id.marker);  
+		toggleBounce(marker);  
 	};
-
-
-	//self.markerbounce = function(marker) {  	
-      //  this.marker.setAnimation(google.maps.Animation.BOUNCE);
-       // setTimeout(function(){ marker.setAnimation(null); }, 750);	 	
-    //}; 
 
 
 }; 
