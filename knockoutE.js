@@ -183,7 +183,7 @@ var ViewModel = function(){
     self.currentplace= ko.observable(self.myplaces()[0]); 
 	
 	self.markerbounce = function(id) {  
-		this.toggleBounce(places.id);  
+		toggleBounce(places.id);  
 	};
 
 
