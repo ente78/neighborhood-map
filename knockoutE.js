@@ -1,4 +1,60 @@
 
+
+// array with all 5 required places
+
+var places = [{
+        id: 0,
+        name: 'Cremer Group',
+        location: {
+            lat: 53.554072,
+            lng: 10.003331,
+        },
+        type: 'work',  
+     
+    },
+    {
+        id: 1,
+        name: 'nike',
+        location: {
+            lat: 53.552850,
+            lng: 10.004842,
+        },
+        type: 'shopping',      
+   
+    },
+    {
+        id: 2,
+        name: 'perle',
+        location: {
+            lat: 53.551670,
+            lng: 9.999791, 
+        },
+        type: 'food',       
+             
+    },
+    {
+        id: 3,
+        name: 'jack jones ',
+        location: {
+            lat: 53.552315,
+            lng: 10.003437,
+        },
+        type: 'clothes',   
+
+        },
+    {
+        id: 4,
+        name: 'douglas',
+        location: {
+            lat: 53.552251,
+            lng: 10.003797, 
+        },
+        type: 'shopping',     
+
+    },
+
+];
+
 var markers=[];
 
 function initMap() {
@@ -88,78 +144,56 @@ function initMap() {
           return markerImage;
     }
 
-          // This function populates the infowindow when the marker is clicked. We'll only allow
+      // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
-      function populateInfoWindow(marker, infowindow) {
+      function populateInfoWindow(marker, infowindow,content) {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          infowindow.setContent('<div>' + marker.title+ "  " + marker.id +'</div>');
-          infowindow.open(map, marker);
+          infowindow.setContent('<div>' + marker.title+ "  " + marker.id +content+ '</div>');
+          infowindow.open(map, marker,content);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
             infowindow.marker = null;
 
           });
-    }; 
-  }
+    }
+ 
+ // from the ajax course. this function shall get the wiki articles for the marker. in the google dox i found infowwindow.setcontent. 
+		function getWiki(marker){
+			var content = "<ul>"; 
+  			var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.name + '&format=json&callback=wikiCallback';
 
-// array with all 5 required places
+  		 var wikiRequestTimeout = setTimeout(function(){
+        	alert("failed to get wiki");
+   		 },8000);
 
-var places = [{
-        id: 0,
-        name: 'here i work',
-        location: {
-            lat: 53.554072,
-            lng: 10.003331,
-        },
-        type: 'work',  
-     
-    },
-    {
-        id: 1,
-        name: 'nike',
-        location: {
-            lat: 53.552850,
-            lng: 10.004842,
-        },
-        type: 'shopping',      
-   
-    },
-    {
-        id: 2,
-        name: 'perle',
-        location: {
-            lat: 53.551670,
-            lng: 9.999791, 
-        },
-        type: 'food',       
-             
-    },
-    {
-        id: 3,
-        name: 'jack jones ',
-        location: {
-            lat: 53.552315,
-            lng: 10.003437,
-        },
-        type: 'clothes',   
+   		 $.ajax({
+       	 url : WikiUrl, 
+       	 dataType: "jsonp",
+       	 // sjonp: "callback",
+        	success: function (response){
+            	var articleList = response [1];
 
-        },
-    {
-        id: 4,
-        name: 'douglas',
-        location: {
-            lat: 53.552251,
-            lng: 10.003797, 
-        },
-        type: 'shopping',     
+            	for (var i = 0; i < articleList.length; i++) {
+                	articleStr = articleList [i];
+               	 var url = 'http://en.wikipedia.org/wiki/' + articleStr;
+               	 content+= ('<li><a href="' + url + '">' + articleStr + '</a></li>'); 
+           	 }
 
-    },
+           		clearTimeout(wikiRequestTimeout); 
 
-];
+       			infowindow.setContent("<p>" + content + "</p>"); 
 
+        }
+    });   
+
+    return false; 
+    }
+ }
+
+ 
 
 var place = function(data){
     this.name = ko.observable(data.name);
@@ -186,10 +220,33 @@ var ViewModel = function(){
 		toggleBounce(places.id);  
 	};
 
+  /*  if i put the marker inside the viewmodel as recommend the error message is: google is not defined at the viewmodel. and how shall i create an array of markers 
+  inside the viewmodel without using a ko.observables?
+    self.marker = new google.maps.Marker({
+        map: map,
+        position: position,
+        title: title,
+        icon: defaultIcon, 
+        animation: google.maps.Animation.DROP,
+        id: id
+        });
 
+    // Push the marker to our array of markers.
+    self.markers.push(marker);
+    // Create an onclick event to open an infowindow at each marker.
+    self.marker.addListener('click', function() {
+        populateInfoWindow(this, largeInfowindow); 
+    });
+
+    self.marker.addListener('click', function(){
+        toggleBounce(this); 
+    }); 
+      
+    this.toggleBounce = ko.computed(function(marker) {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout(function(){ marker.setAnimation(null); }, 750); 
+
+}); */
 }; 
 ko.applyBindings(new ViewModel()); 
-
-
-
 
