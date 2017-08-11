@@ -58,16 +58,18 @@ var places = [{
 var markers=[];
 
 function initMap() {
-    // Constructor creates a new map - only center and zoom are required.
+ 	function toggleBounce(marker) {
+    	marker.setAnimation(google.maps.Animation.BOUNCE);
+    	setTimeout(function(){ marker.setAnimation(null); }, 750);
+    }  
+
+     // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 53.5528124, lng: 10.0047905},
         zoom: 15        
     });
+	
 
-    function toggleBounce(marker) {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ marker.setAnimation(null); }, 750);
-    }
 
 
         // Style the markers a bit. This will be our listing marker icon.
@@ -220,8 +222,9 @@ var ViewModel = function(){
     self.currentplace= ko.observable(self.myplaces()[0]); 
 	
 	self.markerbounce = function(place) {  
-		toggleBounce(marker[place.id]);  
+		toggleBounce(markers[place.id()]);
 	};
+
 
   /*  if i put the marker inside the viewmodel as recommend the error message is: google is not defined at the viewmodel. and how shall i create an array of markers 
   inside the viewmodel without using a ko.observables?
