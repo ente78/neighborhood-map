@@ -57,11 +57,14 @@ var places = [{
 
 var markers=[];
 
-function initMap() {
- 	function toggleBounce(marker) {
+function toggleBounce(marker) {
     	marker.setAnimation(google.maps.Animation.BOUNCE);
     	setTimeout(function(){ marker.setAnimation(null); }, 750);
     }  
+
+
+function initMap() {
+ 	
 
      // Constructor creates a new map - only center and zoom are required.
     map = new google.maps.Map(document.getElementById('map'), {
@@ -105,6 +108,7 @@ function initMap() {
           });
           // Push the marker to our array of markers.
           markers.push(marker);
+          viewModel.myplaces()[i].marker= marker; 
           // Create an onclick event to open an infowindow at each marker.
           marker.addListener('click', function() {
             populateInfoWindow(this, largeInfowindow); 
@@ -202,7 +206,7 @@ function initMap() {
 
 var place = function(data){
     this.name = ko.observable(data.name);
-    this.id= ko.observable(data.id);
+    this.id= (data.id);
     this.type = ko.observable(data.type); 
     //this.input = ko.observable("");
     //this marker =ko.observableArray([data.marker]); 
@@ -222,37 +226,15 @@ var ViewModel = function(){
     self.currentplace= ko.observable(self.myplaces()[0]); 
 	
 	self.markerbounce = function(place) {  
-		toggleBounce(markers[place.id()]);
+		console.log(place)
+		toggleBounce(markers[place.id]);
 	};
 
 
-  /*  if i put the marker inside the viewmodel as recommend the error message is: google is not defined at the viewmodel. and how shall i create an array of markers 
-  inside the viewmodel without using a ko.observables?
-    self.marker = new google.maps.Marker({
-        map: map,
-        position: position,
-        title: title,
-        icon: defaultIcon, 
-        animation: google.maps.Animation.DROP,
-        id: id
-        });
+ 
 
-    // Push the marker to our array of markers.
-    self.markers.push(marker);
-    // Create an onclick event to open an infowindow at each marker.
-    self.marker.addListener('click', function() {
-        populateInfoWindow(this, largeInfowindow); 
-    });
-
-    self.marker.addListener('click', function(){
-        toggleBounce(this); 
-    }); 
-      
-    this.toggleBounce = ko.computed(function(marker) {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function(){ marker.setAnimation(null); }, 750); 
-
-}); */
 }; 
-ko.applyBindings(new ViewModel()); 
+var viewModel = new ViewModel(); 
+
+ko.applyBindings(viewModel); 
 
