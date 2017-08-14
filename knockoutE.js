@@ -117,9 +117,6 @@ function initMap() {
           marker.addListener('click', function(){
             toggleBounce(this); 
           }); 
-      
-
-
 
         // Two event listeners - one for mouseover, one for mouseout,
         // to change the colors back and forth.
@@ -156,13 +153,14 @@ function initMap() {
       // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
+       
       function populateInfoWindow(marker, infowindow,content) {
       	getWiki(marker); 
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
           console.log(marker.title);
-          console.log(content); 
+          console.log(marker.content); 
           infowindow.setContent('<div>' + marker.title+ "  " + content + '</div>');
           infowindow.open(map, marker,content);
           // Make sure the marker property is cleared if the infowindow is closed.
@@ -173,7 +171,7 @@ function initMap() {
     }
     }
  
- // from the ajax course. this function shall get the wiki articles for the marker. in the google dox i found infowwindow.setcontent. 
+ // from the ajax course. this function shall get the wiki articles for the marker.  
 	function getWiki(marker){
 
 		var content = "<ul>"; 
