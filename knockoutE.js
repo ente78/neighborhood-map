@@ -157,10 +157,13 @@ function initMap() {
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
       function populateInfoWindow(marker, infowindow,content) {
+      	getWiki(marker); 
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          infowindow.setContent('<div>' + marker.title+ "  " + marker.id +content+ '</div>');
+          console.log(marker.title);
+          console.log(content); 
+          infowindow.setContent('<div>' + marker.title+ "  " + content + '</div>');
           infowindow.open(map, marker,content);
           // Make sure the marker property is cleared if the infowindow is closed.
           infowindow.addListener('closeclick', function() {
@@ -168,20 +171,22 @@ function initMap() {
 
           });
     }
+    }
  
  // from the ajax course. this function shall get the wiki articles for the marker. in the google dox i found infowwindow.setcontent. 
-		function getWiki(marker){
-			var content = "<ul>"; 
-  			var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.name + '&format=json&callback=wikiCallback';
+	function getWiki(marker){
 
-  		 var wikiRequestTimeout = setTimeout(function(){
-        	alert("failed to get wiki");
-   		 },8000);
+		var content = "<ul>"; 
+  		var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 
-   		 $.ajax({
-       	 url : WikiUrl, 
+  	 var wikiRequestTimeout = setTimeout(function(){
+       	alert("failed to get wiki");
+   	 },8000);
+
+   	 $.ajax({
+    	 url : wikiUrl, 
        	 dataType: "jsonp",
-       	 // sjonp: "callback",
+       	 // sjonp: "callback"
         	success: function (response){
             	var articleList = response [1];
 
@@ -193,20 +198,19 @@ function initMap() {
 
            		clearTimeout(wikiRequestTimeout); 
 
-       			infowindow.setContent("<p>" + content + "</p>"); 
+       			//infowindow.setContent("<p>" + content + "</p>"); 
 
         }
-    });   
-
+    });  
     return false; 
     }
- }
+
 
  
 
 var place = function(data){
     this.name = ko.observable(data.name);
-    this.id= (data.id);
+    this.id = (data.id);
     this.type = ko.observable(data.type); 
     //this.input = ko.observable("");
     //this marker =ko.observableArray([data.marker]); 
