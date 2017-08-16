@@ -57,6 +57,9 @@ var places = [{
 
 var markers=[];
 
+
+
+
 function toggleBounce(marker) {
     	marker.setAnimation(google.maps.Animation.BOUNCE);
     	setTimeout(function(){ marker.setAnimation(null); }, 750);
@@ -72,8 +75,6 @@ function initMap() {
         zoom: 15        
     });
 	
-
-
 
         // Style the markers a bit. This will be our listing marker icon.
         var defaultIcon = makeMarkerIcon('0091ff');
@@ -153,14 +154,14 @@ function initMap() {
       // This function populates the infowindow when the marker is clicked. We'll only allow
       // one infowindow which will open at the marker that is clicked, and populate based
       // on that markers position.
-       
+
       function populateInfoWindow(marker, infowindow,content) {
       	getWiki(marker); 
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
           console.log(marker.title);
-          console.log(marker.content); 
+          console.log(content); 
           infowindow.setContent('<div>' + marker.title+ "  " + content + '</div>');
           infowindow.open(map, marker,content);
           // Make sure the marker property is cleared if the infowindow is closed.
@@ -168,40 +169,42 @@ function initMap() {
             infowindow.marker = null;
 
           });
-    }
-    }
+    };
+}
+   
  
  // from the ajax course. this function shall get the wiki articles for the marker.  
-	function getWiki(marker){
+		function getWiki(marker, infowindow){
 
-		var content = "<ul>"; 
-  		var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+			var content = "<ul>"; 
+  			var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 
-  	 var wikiRequestTimeout = setTimeout(function(){
-       	alert("failed to get wiki");
-   	 },8000);
+  		 var wikiRequestTimeout = setTimeout(function(){
+     	  	alert("failed to get wiki");
+   		 },8000);
 
-   	 $.ajax({
-    	 url : wikiUrl, 
-       	 dataType: "jsonp",
-       	 // sjonp: "callback"
-        	success: function (response){
-            	var articleList = response [1];
+   		 $.ajax({
+    		 url : wikiUrl, 
+       		 dataType: "jsonp",
+       		 // sjonp: "callback"
+        		success: function (response){
+            		var articleList = response [1];
 
-            	for (var i = 0; i < articleList.length; i++) {
-                	articleStr = articleList [i];
-               	 var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-               	 content+= ('<li><a href="' + url + '">' + articleStr + '</a></li>'); 
-           	 }
+            		for (var i = 0; i < articleList.length; i++) {
+              		  	articleStr = articleList [i];
+               			var url = 'http://en.wikipedia.org/wiki/' + articleStr;
+               		 	content+= ('<li><a ' + url + '">' + articleStr + '</a></li>'); 
+           		 }
 
-           		clearTimeout(wikiRequestTimeout); 
+           			clearTimeout(wikiRequestTimeout); 
+						infowindow.setContent('<div>' + content + '</div>'); 
+       					
+       	 } 
 
-       			//infowindow.setContent("<p>" + content + "</p>"); 
+   	 });  
+   	 return false; 
+   	 }
 
-        }
-    });  
-    return false; 
-    }
 
 
  
