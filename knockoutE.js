@@ -221,16 +221,18 @@ var place = function(data){
     this.name = ko.observable(data.name);
     this.id = (data.id);
     this.type = ko.observable(data.type); 
-    this.input = ko.observable("");
+    //this.input = ko.observable("");
     //this marker =ko.observableArray([data.marker]); 
-    this.inputfilter = ko.observableArray([]);   
+    //this.inputfilter = ko.observableArray([]);   
     }; 
 
 
 var ViewModel = function(){
     var self = this;
     self.myplaces = ko.observableArray([]);
-
+    self.input = ko.observable("");
+    //this marker =ko.observableArray([data.marker]); 
+    self.inputfilter = ko.observableArray([]); 
 
     places.forEach(function(placeitem){
 		self.myplaces.push(new place(placeitem));
@@ -253,6 +255,7 @@ var ViewModel = function(){
      	 } else {
          		 return marker.setVisible(false);
     	  }
+    	  return marker.title.toLowerCase().indexOf(filter) > -1;
    		 });
 	}, this);
 
@@ -260,6 +263,7 @@ var ViewModel = function(){
 
 }; 
 var viewModel = new ViewModel(); 
+
 
 ko.applyBindings(viewModel); 
 
