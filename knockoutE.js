@@ -218,7 +218,7 @@ function initMap() {
  
 
 var place = function(data){
-    this.name = ko.observable(data.name);
+    this.name = (data.name);
     this.id = (data.id);
     this.type = ko.observable(data.type); 
     //this.input = ko.observable("");
@@ -248,14 +248,16 @@ var ViewModel = function(){
 	
     this.search = ko.computed(function(){
 	    var filter = self.input().toLowerCase();
-	    if (filter)
-   		 return ko.utils.arrayFilter(self.inputfilter(), function(place) {
-   			 if (marker.title.toLowerCase().indexOf(filter) > -1) {
-         		 return marker.setVisible(true);
-     	 } else {
-         		 return marker.setVisible(false);
-    	  }
-    	  return marker.title.toLowerCase().indexOf(filter) > -1;
+	   // if (filter) 
+   		 return ko.utils.arrayFilter(self.myplaces(), function(place) {
+   			 var match= (place.name.toLowerCase().indexOf(filter) > -1) 
+   			 console.log(place); 
+     		 if (place.marker) {
+     		 place.marker.setVisible(match) 
+     		}; 
+     		 return match  		    
+    	  
+
    		 });
 	}, this);
 

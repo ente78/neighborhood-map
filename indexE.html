@@ -27,8 +27,8 @@
 
                 </div>
                 <div id="sidebar-wrapper" class="sidebar-toggle">
-                    <input data-bind="value: input, valueUpdate: 'afterkeydown', event: { keyup: search}" id="myinput" type="text" placeholder="search">
-                    <ul class="sidebar-nav" id="myul" data-bind="foreach: myplaces">
+                    <input data-bind="textInput: input,  id="myinput" type="text" placeholder="search">
+                    <ul class="sidebar-nav" id="myul" data-bind="foreach: search">
                         <li>
                             <a data-bind="text:name, click: $parent.markerbounce"></a>
                         </li>
