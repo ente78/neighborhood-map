@@ -156,12 +156,10 @@ function initMap() {
       // on that markers position.
 
       function populateInfoWindow(marker, infowindow,content) {
-      	getWiki(marker); 
+      	getWiki(marker, infowindow); 
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
           infowindow.marker = marker;
-          console.log(marker.title);
-          console.log(content); 
           infowindow.setContent('<div>' + marker.title+ "  " + content + '</div>');
           infowindow.open(map, marker,content);
           // Make sure the marker property is cleared if the infowindow is closed.
@@ -172,6 +170,10 @@ function initMap() {
     };
 }
    
+   function getContent(data) {
+   		var contentString = '<div class ="infoWindow"><h4 class="title">'+ data.title + '</h4>'+ '<div>' + data.content + '</div></div>';
+   		return contentString ;    	
+   }
  
  // from the ajax course. this function shall get the wiki articles for the marker.  
 		function getWiki(marker, infowindow){
@@ -197,9 +199,15 @@ function initMap() {
            		 }
 
            			clearTimeout(wikiRequestTimeout); 
-						infowindow.setContent('<div>' + content + '</div>'); 
-       					
-       	 } 
+						
+					var data = {
+						title: marker.title,
+						content: content        					
+       	 			} ;
+
+       	 			infowindow.setContent(getContent(data));
+       	 			infowindow.open (map, marker); 
+				}
 
    	 });  
    	 return false; 
@@ -213,9 +221,9 @@ var place = function(data){
     this.name = ko.observable(data.name);
     this.id = (data.id);
     this.type = ko.observable(data.type); 
-    //this.input = ko.observable("");
+    this.input = ko.observable("");
     //this marker =ko.observableArray([data.marker]); 
-    //this.inputfilter = ko.observableArray([]);   
+    this.inputfilter = ko.observableArray([]);   
     }; 
 
 
@@ -235,6 +243,18 @@ var ViewModel = function(){
 		toggleBounce(markers[place.id]);
 	};
 
+	
+    this.search = ko.computed(function(){
+	    var filter = self.input().toLowerCase();
+	    if (filter)
+   		 return ko.utils.arrayFilter(self.inputfilter(), function(place) {
+   			 if (marker.title.toLowerCase().indexOf(filter) > -1) {
+         		 return marker.setVisible(true);
+     	 } else {
+         		 return marker.setVisible(false);
+    	  }
+   		 });
+	}, this);
 
  
 
