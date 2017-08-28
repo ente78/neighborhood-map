@@ -4,7 +4,7 @@
 
 var places = [{
         id: 0,
-        name: 'Cremer Group',
+        name: 'Peter Cremer',
         location: {
             lat: 53.554072,
             lng: 10.003331,
@@ -179,7 +179,7 @@ function initMap() {
 		function getWiki(marker, infowindow){
 
 			var content = "<ul>"; 
-  			var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  			var wikiUrl = 'http://de.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
 
   		 var wikiRequestTimeout = setTimeout(function(){
      	  	alert("failed to get wiki");
@@ -194,8 +194,8 @@ function initMap() {
 
             		for (var i = 0; i < articleList.length; i++) {
               		  	articleStr = articleList [i];
-               			var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-               		 	content+= ('<li><a ' + url + '">' + articleStr + '</a></li>'); 
+               			var url = 'http://de.wikipedia.org/wiki/' + articleStr;
+               		 	content+= ('<li><a href="' + url + '">' + articleStr + '</a></li>'); 
            		 }
 
            			clearTimeout(wikiRequestTimeout); 
