@@ -269,3 +269,6 @@ var viewModel = new ViewModel();
 
 ko.applyBindings(viewModel); 
 
+function mapError() {
+    alert("fehler beim laden ");
+}
