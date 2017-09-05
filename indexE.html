@@ -4,7 +4,7 @@
 
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
-      <meta name ="ente"> 
+      <meta name ="author" content = "ente"> 
       <title>hamburg, a big city </title>
     
 
@@ -13,12 +13,12 @@
 
     <div id="map"></div>
 
-    <nav class="navbar navbar-default" role="navigation">
+    <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">  
 
                   <a class="navbar-brand"> my places in hamburg  </a>
-                    <a id="menu-toggle" href="#" class="navbar-toggle">
+                    <a id="menu-toggle" href="#" class="navbar-toggle" data-toggle ="collapse" data-target="#sidebar-wrapper">
                     <!-- creates three horizontal lines, for responsive layout-->
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
@@ -27,11 +27,11 @@
                     </a>
 
                 </div>
-                <div id="sidebar-wrapper" class="sidebar-toggle">
-                    <input data-bind="textInput: input,  id="myinput" type="text" placeholder="search">
-                    <ul class="sidebar-nav" id="myul" data-bind="foreach: search">
-                        <li>
-                            <a data-bind="text:name, click: $parent.markerbounce"></a>
+                <div id="sidebar-wrapper" class="sidebar-toggle" class="collapse navbar-collapse">
+                    <input data-bind="textInput:input" id="myinput" type="text" placeholder="search">
+                    <ul class="sidebar-nav"  id="myul" data-bind="foreach: search">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" class ="dropdown-menu" data-bind="text:name, click: $parent.markerbounce"></a>
                         </li>
                     </ul>
                 </div>
@@ -39,12 +39,13 @@
         </nav>
 
       
-
+     
+     
 
       <script src= "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+       <script src="knockoutE.js"></script>
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -53,8 +54,7 @@
       <script async defer
          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlAGSHhZsgJfpqiAYJDiWyemHSobGDuSY&v=3&callback=initMap"></script>
       <link href="styleE.css" rel="stylesheet">
-      <!--<script src="mapE.js"></script>-->
-      <script src="knockoutE.js"></script>
+
 
   </body>
 
