@@ -12,29 +12,28 @@
   <body> 
 
     <div id="map"></div>
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">hamburg, a big city</a>
+            </div>
 
-    <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">  
-
-                  <a class="navbar-brand"> my places in hamburg  </a>
-                    <a id="menu-toggle" href="#" class="navbar-toggle" data-toggle ="collapse" data-target="#sidebar-wrapper">
-                    <!-- creates three horizontal lines, for responsive layout-->
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                    </a>
-
-                </div>
-                <div id="sidebar-wrapper" class="sidebar-toggle" class="collapse navbar-collapse">
-                    <input data-bind="textInput:input" id="myinput" type="text" placeholder="search">
-                    <ul class="sidebar-nav"  id="myul" data-bind="foreach: search">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" class ="dropdown-menu" data-bind="text:name, click: $parent.markerbounce"></a>
-                        </li>
-                    </ul>
-                </div>
+            </div class="collapse navbar-collapse">
+              <div id="sidebar-wrapper" class="sidebar-toggle">
+                <input data-bind="textInput:input" id="myinput" type="text" placeholder="search">
+                  <ul class="sidebar-nav" class="dropdown-toggle" data-toggle="dropdown" class="nav navbar-nav" id="myul" data-bind="foreach: search">
+                     <li class="dropdown" class="active">
+                      <a data-bind="text:name, click: $parent.markerbounce"></a>
+                      </li>
+                  </ul>
+              </div>
             </div>
         </nav>
 
