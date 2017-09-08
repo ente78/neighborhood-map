@@ -9,7 +9,7 @@ body {
 
 #sidebar-wrapper {
   top: 51px;
-  left: -200px;
+  left: 00px;
   width: 250px;
   background-color: green;
   color: green;
@@ -19,6 +19,7 @@ body {
 }
 .sidebar-nav {
     position: absolute;
+    left:0px;
     top: 100;
     margin: 0;
     padding: 0;
