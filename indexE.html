@@ -12,8 +12,8 @@
   <body> 
   <div class="container-fluid">
   <div class = "row">
-    <div id="map" class= "col-md-9 col-xs-12"  ></div>
-      <nav class="navbar navbar-default col-md-3" col->
+    <div id="map" class= "col-md-12 col-xs-12" ></div>
+      <nav class="navbar navbar-default" role="navigation" >
          
         <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -26,17 +26,17 @@
             <a class="navbar-brand" href="#">hamburg, a big city</a>
             </div>
 
-            <div class="navbar-collapse" id="sidebar-wrapper">
+            <div class="navbar-collapse" id="sidebar-wrapper" >
               <div class="sidebar-toggle">
                 <input data-bind="textInput:input" id="myinput" type="text" placeholder="search">
-                  <ul class="sidebar-nav" class="dropdown-toggle" data-toggle="dropdown" class="nav navbar-nav" id="myul" data-bind="foreach: search">
+                  <ul class="sidebar-nav"  data-bind="foreach: search">
                      <li class="dropdown" class="active">
                       <a data-bind="text:name, click: $parent.markerbounce"></a>
                       </li>
                   </ul>
               </div> 
             </div>          
-          </nav>
+          </nav>          
           </div>
           </div>
 
