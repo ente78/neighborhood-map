@@ -13,7 +13,7 @@
   <div class="container-fluid">
   <div class = "row">
     <div id="map" class= "col-md-12 col-xs-12" ></div>
-      <nav class="navbar navbar-default" role="navigation" >
+      <nav class="navbar navbar-default"  >
          
         <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -26,11 +26,11 @@
             <a class="navbar-brand" href="#">hamburg, a big city</a>
             </div>
 
-            <div class="navbar-collapse" id="sidebar-wrapper" >
+            <div class="navbar-collapse collapse" id="sidebar-wrapper">
               <div class="sidebar-toggle">
                 <input data-bind="textInput:input" id="myinput" type="text" placeholder="search">
                   <ul class="sidebar-nav"  data-bind="foreach: search">
-                     <li class="dropdown" class="active">
+                     <li class="dropdown active">
                       <a data-bind="text:name, click: $parent.markerbounce"></a>
                       </li>
                   </ul>
@@ -42,7 +42,7 @@
 
      
      
-
+      <link href="styleE.css" rel="stylesheet">
       <script src= "https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
       <!-- Latest compiled and minified CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -54,7 +54,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
       <script async defer
          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlAGSHhZsgJfpqiAYJDiWyemHSobGDuSY&v=3&callback=initMap" async defer onerror="mapError()"></script>
-      <link href="styleE.css" rel="stylesheet">
+      
 
 
   </body>

@@ -14,20 +14,10 @@ body {
   background-color: green;
   color: green;
   position: fixed;
-  height: 100%;
+  height: 70%;
   z-index: 1;
 }
-.sidebar-nav {
-    position: absolute;
-    left:0px;
-    top: 100;
-    margin: 0;
-    padding: 0;
-    width: 250px;
-    list-style: none;
-    overflow-y: auto;
-    max-height: 90%;
-}
+
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 50px;
@@ -49,16 +39,11 @@ body {
     transition: all 0.3s ease-out;
     margin-left: -200px;
 }
-@media (min-width: 768px) {
-    #sidebar-wrapper.sidebar-toggle {
-        transition: 0s;
-        left: 200px;
-    }
-}
+
+
 
 #map {
-    position: absolute;  
-     
+    position: absolute;       
     bottom: 0;
     right: 0;
     width: ;
